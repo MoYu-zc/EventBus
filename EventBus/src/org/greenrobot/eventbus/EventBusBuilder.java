@@ -35,6 +35,7 @@ public class EventBusBuilder {
     boolean sendSubscriberExceptionEvent = true;
     boolean sendNoSubscriberEvent = true;
     boolean throwSubscriberException;
+    boolean throwNoSubscriberException;
     boolean eventInheritance = true;
     boolean ignoreGeneratedIndex;
     boolean strictMethodVerification;
@@ -79,6 +80,20 @@ public class EventBusBuilder {
      */
     public EventBusBuilder throwSubscriberException(boolean throwSubscriberException) {
         this.throwSubscriberException = throwSubscriberException;
+        return this;
+    }
+
+    /**
+     * Fails if no subscriber is found for a posted event (default: false).
+     * <p/>
+     * This is useful for critical events that must have a subscriber. For example, in startup scenarios
+     * where bean registration hasn't completed yet, you might want to catch configuration errors early.
+     * <p/>
+     * Tip: Use this with BuildConfig.DEBUG to let the app crash in DEBUG mode (only). In production,
+     * consider using {@link #sendNoSubscriberEvent(boolean)} to handle missing subscribers gracefully.
+     */
+    public EventBusBuilder throwNoSubscriberException(boolean throwNoSubscriberException) {
+        this.throwNoSubscriberException = throwNoSubscriberException;
         return this;
     }
 
