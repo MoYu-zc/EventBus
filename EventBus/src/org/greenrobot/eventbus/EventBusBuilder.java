@@ -15,12 +15,13 @@
  */
 package org.greenrobot.eventbus;
 
-import org.greenrobot.eventbus.android.AndroidComponents;
-import org.greenrobot.eventbus.meta.SubscriberInfoIndex;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import org.greenrobot.eventbus.android.AndroidComponents;
+import org.greenrobot.eventbus.meta.SubscriberInfoIndex;
 
 /**
  * Creates EventBus instances with custom parameters and also allows to install a custom default EventBus instance.
@@ -89,8 +90,6 @@ public class EventBusBuilder {
      * This is useful for critical events that must have a subscriber. For example, in startup scenarios
      * where bean registration hasn't completed yet, you might want to catch configuration errors early.
      * <p/>
-     * Tip: Use this with BuildConfig.DEBUG to let the app crash in DEBUG mode (only). In production,
-     * consider using {@link #sendNoSubscriberEvent(boolean)} to handle missing subscribers gracefully.
      */
     public EventBusBuilder throwNoSubscriberException(boolean throwNoSubscriberException) {
         this.throwNoSubscriberException = throwNoSubscriberException;
